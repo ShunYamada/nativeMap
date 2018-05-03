@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
-import MapView from 'react-native-maps';
+import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
 
 export default class Main extends Component {
   render() {
     return (
       <MapView
+        provider={PROVIDER_GOOGLE}
         style={styles.map}
         initialRegion={{
           latitude: 37.78825,
