@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, Platform, PermissionAndroid } from 'react-native';
+import { View, Text, TextInput, Platform, PermissionAndroid, TouchableOpacity } from 'react-native';
 import { StyleSheet } from 'react-native';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default class Home extends Component {
 
@@ -56,6 +57,12 @@ export default class Home extends Component {
           }}
         />
         }
+        <TouchableOpacity
+          style={styles.fabContainer}
+        >
+          <Icon name={'camera'} size={28} style={styles.icon} />
+    			<Text style={styles.btnText}> Create </Text>
+    		</TouchableOpacity>
       </View>
     );
   }
@@ -79,4 +86,29 @@ async function getCurrentPosition(timeoutMillis = 10000) {
 
 const styles = StyleSheet.create({
   map: { ...StyleSheet.absoluteFillObject, },
+  fabContainer: {
+    backgroundColor:'#00a0d8',
+    height: 80,
+    width: 80,
+    borderRadius: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'absolute',
+    bottom: 40,
+    right:20,
+    shadowColor: '#000',
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
+    shadowOffset: {
+        height: 1,
+        width: 0
+    }
+  },
+  btnText: {
+    fontSize: 14,
+    color: '#fff',
+  },
+  icon: {
+    color: '#fff'
+  }
 });
