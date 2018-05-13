@@ -6,6 +6,7 @@
  */
 
 #import "AppDelegate.h"
+#import <Firebase.h>
 
 @import GoogleMaps;
 
@@ -17,7 +18,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   NSURL *jsCodeLocation;
-
+  
+  [FIRApp configure];
   [GMSServices provideAPIKey:@"AIzaSyDnf81eQLoSEpFQesHcM8GhV3iz88cRyU4"];
 
   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];

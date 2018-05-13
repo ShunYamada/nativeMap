@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "365293115695",
+    "firebase_url": "https://nativemap-1525324113614.firebaseio.com",
+    "project_id": "nativemap-1525324113614",
+    "storage_bucket": "nativemap-1525324113614.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:365293115695:android:8e9a77536317fb64",
+        "android_client_info": {
+          "package_name": "com.gociao.nativeMap"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "365293115695-2f3si8jgk37ev2d6pgij2jrdpta4ngsv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcceKYc-KR0oc_SYZBEopkmhANBCm8ESo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
