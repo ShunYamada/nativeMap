@@ -6,7 +6,9 @@ import {
 const INITIAL_STATE = {
   name: '',
   price: '',
-  category: ''
+  category: '',
+  latitude: '',
+  longitude: ''
 };
 
 export default (state = INITIAL_STATE, action) => {

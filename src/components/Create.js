@@ -5,7 +5,9 @@ import {
   TouchableOpacity,
   StyleSheet,
   Button,
-  ScrollView
+  ScrollView,
+  PermissionsAndroid,
+  Platform
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { connect } from 'react-redux';
@@ -58,6 +60,7 @@ class Create extends Component {
      super(props);
      this.inputRefs = {};
      this.state = {
+       coords: null,
        favColor: undefined,
        items: [
            {
@@ -78,12 +81,25 @@ class Create extends Component {
 
   onButtonPress() {
     const { name, price, category, navigation } = this.props;
+    const { latitude, longitude } = this.state.coords;
 
-    this.props.placeCreate({ name, price, category, navigation });
+    this.props.placeCreate({ name, price, category, navigation, latitude, longitude });
   }
 
-  componentDidMount() {
-    this.props.navigation.setParams({ handleSave: this.onButtonPress.bind(this) });
+  async componentDidMount() {
+    try {
+      const position = await getCurrentPosition(5000);
+      const { latitude, longitude } = position.coords;
+      this.setState({
+        coords: {
+          latitude,
+          longitude
+        }
+      })
+      this.props.navigation.setParams({ handleSave: this.onButtonPress.bind(this) });
+    } catch(e) {
+      alert(e.message)
+    }
   }
 
   static navigationOptions = ({ navigation }) => {
@@ -168,10 +184,26 @@ class Create extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  const { name, price, category } = state.placeForm;
+async function getCurrentPosition(timeoutMillis = 10000) {
+  if (Platform.OS === "android") {
+      const ok = await PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION);
+      if (!ok) {
+          const granted = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION);
+          if (granted !== PermissionsAndroid.RESULTS.GRANTED) {
+              // TODO ユーザーにGPS使用許可がもらえなかった場合の処理
+          }
+      }
+  }
 
-  return { name, price, category };
+  return new Promise((resolve, reject) => {
+      navigator.geolocation.getCurrentPosition(resolve, reject, { timeout: timeoutMillis });
+  });
+}
+
+const mapStateToProps = (state) => {
+  const { name, price, category, latitude, longitude } = state.placeForm;
+
+  return { name, price, category, latitude, longitude };
 };
 
 export default connect(mapStateToProps, {

@@ -11,11 +11,11 @@ export const placeUpdate = ({ prop, value }) => {
   };
 };
 
-export const placeCreate = ({ name, price, category, navigation }) => {
+export const placeCreate = ({ name, price, category, navigation, latitude, longitude }) => {
 
   return (dispatch) => {
     firebase.database().ref(`/places`)
-      .push({ name, price, category })
+      .push({ name, price, category, latitude, longitude })
       .then(() => {
         dispatch({ type: PLACE_CREATE });
         navigation.navigate('Home');
