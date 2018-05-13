@@ -6,6 +6,10 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default class Home extends Component {
 
+  static navigationOptions = {
+    header: null,
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -59,6 +63,7 @@ export default class Home extends Component {
         }
         <TouchableOpacity
           style={styles.fabContainer}
+          onPress={()=>this.props.navigation.navigate('Create')}
         >
           <Icon name={'camera'} size={28} style={styles.icon} />
     			<Text style={styles.btnText}> Create </Text>
