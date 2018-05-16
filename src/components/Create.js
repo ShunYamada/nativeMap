@@ -80,10 +80,10 @@ class Create extends Component {
    }
 
   onButtonPress() {
-    const { name, price, category, navigation } = this.props;
+    const { name, amount, category, navigation } = this.props;
     const { latitude, longitude } = this.state.coords;
 
-    this.props.placeCreate({ name, price, category, navigation, latitude, longitude });
+    this.props.placeCreate({ name, amount, category, navigation, latitude, longitude });
   }
 
   async componentDidMount() {
@@ -148,7 +148,7 @@ class Create extends Component {
               description={'家賃'}
               placeholder={'How much do you sell?'}
               keyboardType={'numeric'}
-              onChangeText={value => this.props.placeUpdate({ prop: 'price', value })}
+              onChangeText={value => this.props.placeUpdate({ prop: 'amount', value })}
             />
           </CardSection>
           <CardSection>
@@ -201,9 +201,9 @@ async function getCurrentPosition(timeoutMillis = 10000) {
 }
 
 const mapStateToProps = (state) => {
-  const { name, price, category, latitude, longitude } = state.placeForm;
+  const { name, amount, category, latitude, longitude } = state.placeForm;
 
-  return { name, price, category, latitude, longitude };
+  return { name, amount, category, latitude, longitude };
 };
 
 export default connect(mapStateToProps, {

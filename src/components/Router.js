@@ -9,6 +9,6 @@ export default StackNavigator({
   Create: { screen: Create },
   AnimatedView: { screen: AnimatedView }
 }, {
-  initialRouteName: 'Home',
+  initialRouteName: 'AnimatedView',
   mode: 'modal'
 });

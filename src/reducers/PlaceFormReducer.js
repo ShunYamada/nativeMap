@@ -5,7 +5,7 @@ import {
 
 const INITIAL_STATE = {
   name: '',
-  price: '',
+  amount: '',
   category: '',
   latitude: '',
   longitude: ''

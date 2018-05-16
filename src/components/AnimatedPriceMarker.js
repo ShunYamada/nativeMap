@@ -13,12 +13,12 @@ class AnimatedPriceMarker extends React.Component {
 
     const background = selected.interpolate({
       inputRange: [0, 1],
-      outputRange: ['#FF5A5F', '#4da2ab'],
+      outputRange: ['#005E7F', '#00A0D8'],
     });
 
     const border = selected.interpolate({
       inputRange: [0, 1],
-      outputRange: ['#D23F44', '#007a87'],
+      outputRange: ['#005E7F', '#00A0D8'],
     });
 
     return (
