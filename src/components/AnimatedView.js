@@ -9,7 +9,9 @@ import {
   Animated,
   Image,
   Dimensions,
-  TouchableOpacity
+  TouchableOpacity,
+  Platform,
+  PermissionAndroid
 } from "react-native";
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
 import { placesFetch } from '../actions';
@@ -36,11 +38,7 @@ class AnimatedView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      coords: null,
-      region: {
-        latitudeDelta: 0.04864195044303443,
-        longitudeDelta: 0.040142817690068,
-      },
+      coords: null
     };
   }
 
@@ -63,36 +61,6 @@ class AnimatedView extends React.Component {
     this.index = 0;
     this.animation = new Animated.Value(0);
     this.props.placesFetch();
-  }
-
-  componentDidMount() {
-    // We should detect when scrolling has stopped then animate
-    // We should just debounce the event listener here
-    this.animation.addListener(({ value }) => {
-      let index = Math.floor(value / CARD_WIDTH + 0.3); // animate 30% away from landing on the next item
-      if (index >= this.props.places.length) {
-        index = this.props.places.length - 1;
-      }
-      if (index <= 0) {
-        index = 0;
-      }
-
-      clearTimeout(this.regionTimeout);
-      this.regionTimeout = setTimeout(() => {
-        if (this.index !== index) {
-          this.index = index;
-          const { coordinate } = this.state.places[index];
-          this.map.animateToRegion(
-            {
-              ...coordinate,
-              latitudeDelta: this.state.region.latitudeDelta,
-              longitudeDelta: this.state.region.longitudeDelta,
-            },
-            350
-          );
-        }
-      }, 10);
-    });
   }
 
   render() {

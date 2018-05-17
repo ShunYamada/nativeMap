@@ -80,7 +80,7 @@ class Create extends Component {
    }
 
   onButtonPress() {
-    const { title, amount, category, navigation } = this.props;
+    const { name, amount, category, navigation } = this.props;
     const { latitude, longitude } = this.state.coords;
 
     this.props.placeCreate({ name, amount, category, navigation, latitude, longitude });
