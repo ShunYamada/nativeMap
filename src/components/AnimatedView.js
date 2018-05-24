@@ -31,9 +31,17 @@ const CARD_HEIGHT = height / 4;
 const CARD_WIDTH = CARD_HEIGHT - 50;
 
 class AnimatedView extends React.Component {
-  static navigationOptions = {
-    header: null,
-  }
+  static navigationOptions = ({ navigation, screenProps }) => ({
+    drawerLabel: "AnimatedView",
+    title: "AnimatedView",
+    headerLeft: (
+      <View style={{ paddingHorizontal: 10 }}>
+        <TouchableOpacity onPress={() => navigation.openDrawer()}>
+          <Icon name="menu" size={30} color="blue" />
+        </TouchableOpacity>
+      </View>
+    )
+  });
 
   constructor(props) {
     super(props);
