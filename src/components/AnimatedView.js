@@ -17,6 +17,7 @@ import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
 import { placesFetch } from '../actions';
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import I18n from 'react-native-i18n';
 
 const Images = [
   { uri: "https://i.imgur.com/sNam9iJ.jpg" },
@@ -32,8 +33,8 @@ const CARD_WIDTH = CARD_HEIGHT - 50;
 
 class AnimatedView extends React.Component {
   static navigationOptions = ({ navigation, screenProps }) => ({
-    drawerLabel: "AnimatedView",
-    title: "AnimatedView",
+    drawerLabel: I18n.t('animated'),
+    title: I18n.t('animated'),
     headerLeft: (
       <View style={{ paddingHorizontal: 10 }}>
         <TouchableOpacity onPress={() => navigation.openDrawer()}>
@@ -198,10 +199,23 @@ class AnimatedView extends React.Component {
           onPress={()=>this.props.navigation.navigate('Create')}
         >
           <Icon name={'camera'} size={28} style={styles.icon} />
-          <Text style={styles.btnText}> Create </Text>
+          <Text style={styles.btnText}> {I18n.t('create')} </Text>
         </TouchableOpacity>
       </View>
     );
+  }
+}
+
+I18n.fallbacks = true;
+
+I18n.translations = {
+  en: {
+    create: 'Create',
+    animated: 'AnimatedView'
+  },
+  ja: {
+    create: '作成する',
+    animated: '全体マップ'
   }
 }
 
