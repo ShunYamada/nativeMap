@@ -18,6 +18,7 @@ import { placesFetch } from '../actions';
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import I18n from 'react-native-i18n';
+import DrawerButton from './common/DrawerButton';
 
 const Images = [
   { uri: "https://i.imgur.com/sNam9iJ.jpg" },
@@ -32,17 +33,9 @@ const CARD_HEIGHT = height / 4;
 const CARD_WIDTH = CARD_HEIGHT - 50;
 
 class AnimatedView extends React.Component {
-  static navigationOptions = ({ navigation, screenProps }) => ({
-    drawerLabel: I18n.t('animated'),
-    title: I18n.t('animated'),
-    headerLeft: (
-      <View style={{ paddingHorizontal: 10 }}>
-        <TouchableOpacity onPress={() => navigation.openDrawer()}>
-          <Icon name="menu" size={30} color="blue" />
-        </TouchableOpacity>
-      </View>
-    )
-  });
+  static navigationOptions = {
+    header: null,
+  }
 
   constructor(props) {
     super(props);
@@ -194,6 +187,7 @@ class AnimatedView extends React.Component {
             </View>
           ))}
         </Animated.ScrollView>
+        <DrawerButton navigation={this.props.navigation} />
         <TouchableOpacity
           style={styles.fabContainer}
           onPress={()=>this.props.navigation.navigate('Create')}

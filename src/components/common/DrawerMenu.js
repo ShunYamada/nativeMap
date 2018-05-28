@@ -6,10 +6,10 @@ import {
   TouchableOpacity,
   View
 } from "react-native";
-import { NavigationActions } from 'react-navigation';
+import { NavigationActions, DrawerActions } from 'react-navigation';
 
 class DrawerMenu extends React.Component {
-  navigateToScreen = (route) => () => {
+  navigateToScreen = (route) => {
     const navigateAction = NavigationActions.navigate({
       routeName: route
     });
@@ -21,15 +21,15 @@ class DrawerMenu extends React.Component {
       <View style={styles.container}>
         <TouchableOpacity
           style={styles.menuItem}
-          onPress={this.navigateToScreen('Home', { isStatusBarHidden: false })}
+          onPress={this.navigateToScreen('Animated', { isStatusBarHidden: false })}
         >
           <Text style={styles.menuItemText}>Home</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.menuItem}
-          onPress={this.navigateToScreen('AnimatedView', { isStatusBarHidden: false })}
+          onPress={this.navigateToScreen('Chat', { isStatusBarHidden: false })}
         >
-          <Text style={styles.menuItemText}>AnimatedView</Text>
+          <Text style={styles.menuItemText}>Chat</Text>
         </TouchableOpacity>
       </View>
     );

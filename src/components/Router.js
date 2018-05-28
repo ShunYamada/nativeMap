@@ -9,6 +9,8 @@ import DrawerMenu from './common/DrawerMenu';
 const MainScreenNavigator = StackNavigator({
   AnimatedView: { screen: AnimatedView },
   Home: { screen: Home }
+}, {
+  haderMode: 'none'
 });
 
 const MainDrawer = DrawerNavigator(
@@ -22,12 +24,11 @@ const MainDrawer = DrawerNavigator(
 );
 
 const MainNavigator = StackNavigator({
-  Home: { screen: Home },
+  MainDrawer: { screen: MainDrawer },
   Create: { screen: Create },
-  AnimatedView: { screen: AnimatedView }
 }, {
-  initialRouteName: 'AnimatedView',
-  mode: 'modal'
+  initialRouteName: 'MainDrawer',
+  mode: 'modal',
 });
 
-export default MainDrawer;
+export default MainNavigator;
